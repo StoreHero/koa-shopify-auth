@@ -108,7 +108,8 @@ export default function createShopifyAuth(options: OAuthStartOptions) {
             ctx.throw(400, e.message);
             break;
           case (e instanceof Shopify.Errors.SessionNotFound):
-            ctx.throw(403, e.message);
+          case (e instanceof Shopify.Errors.CookieNotFound):
+              ctx.throw(403, e.message);
             break;
           default:
             ctx.throw(500, e.message);
